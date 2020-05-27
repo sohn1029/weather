@@ -16,12 +16,13 @@ import kotlinx.coroutines.*
 import org.json.JSONArray
 
 const val API_KEY : String = BuildConfig.ApiKey
-const val BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
-val city = listOf(
-    "Seoul",
-    "Daejeon",
-    "Taegu",
-    "Busan"
+const val BASE_URL = "http://api.openweathermap.org/data/2.5/onecall"
+
+val city = arrayOf(
+    arrayOf("37.57","126.98"),
+    arrayOf("36.33","127.42"),
+    arrayOf("35.87","128.59"),
+    arrayOf("35.10","129.04")
 )
 
 class ForecastFragment : Fragment() {
@@ -38,7 +39,7 @@ class ForecastFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val url = "$BASE_URL?q=Seoul,kr&APPID=$API_KEY"
+        val url = "$BASE_URL?lat=37.57&lon=126.98&exclude=current,minuetly,hourly&appid=$API_KEY"
         var weatherlist = mutableListOf<String>()
 
         val adapter = ArrayAdapter(this.context!!,android.R.layout.simple_list_item_1,weatherlist)
@@ -64,18 +65,26 @@ class ForecastFragment : Fragment() {
                 is Result.Success -> {
                     val data = result.get()
                     val json = JSONObject(data)
+                    val dailydata = json.getJSONArray("daily")
                     //weather array
-                    val weatherArray = json.getJSONArray("weather")
-                    val weatherObject = weatherArray.getJSONObject(0)
-                    //main
-                    val main = (json["main"] as JSONObject)
+                    for(day in 0..7){
 
-                    val weathermain = weatherObject.getString("main")
-                    val mainmintemp = main.getString("temp_min")
-                    val mainmaxtemp = main.getString("temp_max")
-                    val listtitle = "$weathermain-$mainmintemp/$mainmaxtemp"
-                    weatherlist.add(listtitle)
-                    println(weatherlist)
+                        val current_data = dailydata.getJSONObject(day)
+
+                        val weatherArray = current_data.getJSONArray("weather")
+                        val weatherObject = weatherArray.getJSONObject(0)
+                        //main
+                        val temp = (json["temp"] as JSONObject)
+
+                        val weathermain = weatherObject.getString("main")//Cloud
+                        val mintemp = temp.getString("min")
+                        val maxtemp = temp.getString("max")
+                        val listtitle = "$weathermain - $mintemp / $maxtemp"
+                        weatherlist.add(listtitle)
+                        println(weatherlist)
+
+                    }
+
                 }
             }
             activity?.runOnUiThread {
@@ -89,6 +98,7 @@ class ForecastFragment : Fragment() {
             startActivity(intent)
 
         }
+
     }
 
 
