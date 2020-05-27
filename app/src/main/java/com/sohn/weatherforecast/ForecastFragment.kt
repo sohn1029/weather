@@ -45,6 +45,7 @@ class ForecastFragment : Fragment() {
         val adapter = ArrayAdapter(this.context!!,android.R.layout.simple_list_item_1,weatherlist)
         val listview = view.findViewById<ListView>(R.id.forecast_list)
         listview.adapter = adapter
+        var jsondata : String? = ""
 
         GlobalScope.launch {
 
@@ -64,6 +65,7 @@ class ForecastFragment : Fragment() {
                 }
                 is Result.Success -> {
                     val data = result.get()
+                    jsondata = data
                     val json = JSONObject(data)
                     val dailydata = json.getJSONArray("daily")
                     //weather array
@@ -74,7 +76,7 @@ class ForecastFragment : Fragment() {
                         val weatherArray = current_data.getJSONArray("weather")
                         val weatherObject = weatherArray.getJSONObject(0)
                         //main
-                        val temp = (json["temp"] as JSONObject)
+                        val temp = (current_data["temp"] as JSONObject)
 
                         val weathermain = weatherObject.getString("main")//Cloud
                         val mintemp = temp.getString("min")
@@ -95,6 +97,8 @@ class ForecastFragment : Fragment() {
         listview.setOnItemClickListener { parent, view, position, id ->
             val element = adapter.getItem(position) // The item that was clicked
             val intent = Intent(this.context, WeatherDetail::class.java)
+            intent.putExtra("position",position)
+            intent.putExtra("data",jsondata)
             startActivity(intent)
 
         }
