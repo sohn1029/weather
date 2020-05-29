@@ -53,7 +53,7 @@ class ForecastFragment : Fragment() {
         val url = "$BASE_URL?lat=$currentlat&lon=$currentlon&exclude=current,minuetly,hourly&appid=$API_KEY"
         var weatherlist = mutableListOf<String>()
 
-        val adapter = ArrayAdapter(this.context!!,android.R.layout.simple_list_item_1,weatherlist)
+        val adapter = ArrayAdapter(this.requireContext(),android.R.layout.simple_list_item_1,weatherlist)
         val listview = view.findViewById<ListView>(R.id.forecast_list)
         listview.adapter = adapter
         println(currentlat)

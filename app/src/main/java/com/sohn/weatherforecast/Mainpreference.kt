@@ -10,7 +10,7 @@ class Mainpreference : PreferenceFragmentCompat() {
         addPreferencesFromResource(R.xml.pref_city)
 
         val cityPref = preferenceManager.findPreference<Preference>("searching_city_setting") as ListPreference
-
+        cityPref.summary = cityPref.entry
         cityPref.setOnPreferenceChangeListener { preference, newValue ->
             val index = cityPref.findIndexOfValue(newValue.toString())
             cityPref.summary = cityPref.entries[index]

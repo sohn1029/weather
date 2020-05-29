@@ -59,12 +59,12 @@ class WeatherDetail : AppCompatActivity() {
 
         val sdf = SimpleDateFormat("HH:mm")
         //sunrise
-        val srobject = current_data.getInt("sunrise")+32400
+        val srobject = current_data.getInt("sunrise")
         val srtime = sdf.format(srobject*1000L)
         tmp = "sunrise : $srtime"
         weatherlist.add(tmp)
         //sunset
-        val ssobject = current_data.getInt("sunset")+32400
+        val ssobject = current_data.getInt("sunset")
         val sstime = sdf.format(ssobject*1000L)
         tmp = "sunset : $sstime"
         weatherlist.add(tmp)

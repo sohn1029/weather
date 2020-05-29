@@ -1,16 +1,22 @@
 <?xml version ="1.0" encoding ="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory>
-        app:key="Settings_category"
-        app:title="Settings">
-        <ListPreference
-            android:dialogTitle="Select City"
-            android:entries="@array/reply_entries"
-            android:entryValues="@array/reply_values"
-            android:key="searching_city_setting"
-            android:summary="city"
-            android:title="City" />
-    </PreferenceCategory>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/darker_gray">
+
+
+    <ListPreference
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light"
+        android:dialogTitle="Select City"
+        android:entries="@array/reply_entries"
+        android:entryValues="@array/reply_values"
+        android:icon="@android:drawable/ic_dialog_map"
+        android:key="searching_city_setting"
+        android:summary="city"
+        android:title="City"
+        app:iconSpaceReserved="false" />
+
 
 </PreferenceScreen>
