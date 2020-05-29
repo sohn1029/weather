@@ -11,9 +11,7 @@ class activity_settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        val sps = PreferenceManager.getDefaultSharedPreferences(this)
-        val editName = sps.getString("searching_city_setting", "")
-        println(editName)
+
     }
 
 }
