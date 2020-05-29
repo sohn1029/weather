@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="reply_entries">
+        <item>Seoul</item>
+        <item>Daejeon</item>
+        <item>Taegu</item>
+        <item>Busan</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>seoul</item>
+        <item>daejeon</item>
+        <item>taegu</item>
+        <item>busan</item>
+    </string-array>
+</resources>

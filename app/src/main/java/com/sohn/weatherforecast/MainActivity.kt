@@ -1,10 +1,13 @@
 package com.sohn.weatherforecast
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,16 +24,31 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    private fun reLoadFragment() {
+        // Reload current fragment
+        var frg: Fragment? = null
+        frg = supportFragmentManager.findFragmentById(R.id.forecast_fragment)
+        val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+        ft.detach(frg!!)
+        ft.attach(frg)
+        ft.commit()
+
+
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle action bar item clicks here.
         val id = item.getItemId()
 
         if (id == R.id.refresh) {
-            Toast.makeText(this, "Item Two Clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Refresh", Toast.LENGTH_LONG).show()
+            reLoadFragment()
             return true
         }
         if (id == R.id.city) {
-            Toast.makeText(this, "Item Three Clicked", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Setting", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, activity_settings::class.java)
+            startActivity(intent)
             return true
         }
 

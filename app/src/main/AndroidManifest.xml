@@ -12,7 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity_settings"></activity>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/pref_city" />
+
+        <activity android:name=".activity_settings" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeatherDetail" />
+        <activity
+            android:name=".WeatherDetail"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

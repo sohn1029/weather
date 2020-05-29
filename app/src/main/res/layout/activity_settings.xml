@@ -4,4 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_settings"/>
+    tools:context=".activity_settings">
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.sohn.weatherforecast.Mainpreference"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout="@layout/pref_fragment"
+        tools:layout_editor_absoluteX="149dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

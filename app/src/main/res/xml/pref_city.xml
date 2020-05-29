@@ -1,0 +1,14 @@
+<?xml version ="1.0" encoding ="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory>
+        <ListPreference
+            android:dialogTitle="Select City"
+            android:entries="@array/reply_entries"
+            android:entryValues="@array/reply_values"
+            android:key="searching_city_setting"
+            android:summary="city"
+            android:title="City" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
